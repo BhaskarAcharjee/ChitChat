@@ -55,6 +55,10 @@
         cursor: pointer;
         font-weight: 500;
 
+        &:hover {
+          background-color: #155ab6;
+        }
+
         &:disabled {
           cursor: not-allowed;
           background-color: #1f8ff19c;
@@ -67,5 +71,16 @@
     height: 80%;
     width: 2px;
     background-color: #dddddd35;
+  }
+
+  .link {
+    color: #1f8ef1;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  .link:hover {
+    text-decoration: none;
   }
 }
