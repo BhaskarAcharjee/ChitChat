@@ -101,13 +101,13 @@ const Chat = () => {
       });
     } catch (err) {
       console.log(err);
-    } finally{
-    setImg({
-      file: null,
-      url: "",
-    });
+    } finally {
+      setImg({
+        file: null,
+        url: "",
+      });
 
-    setText("");
+      setText("");
     }
   };
 
@@ -118,7 +118,7 @@ const Chat = () => {
           <img src={user?.avatar || "./avatar.png"} alt="" />
           <div className="texts">
             <span>{user?.username}</span>
-            <p>Lorem ipsum dolor, sit amet.</p>
+            <p>Your Chat Application</p>
           </div>
         </div>
         <div className="icons">
@@ -127,9 +127,8 @@ const Chat = () => {
           <img src="./info.png" alt="" />
         </div>
       </div>
-      {/* {chat?.messages?.length > 0 && ( */}
       <div className="center">
-        {chat?.messages?.length > 0 && chat?.messages?.map((message) => (
+        {chat?.messages?.map((message) => (
           <div
             className={
               message.senderId === currentUser?.id ? "message own" : "message"
@@ -152,8 +151,6 @@ const Chat = () => {
         )}
         <div ref={endRef}></div>
       </div>
-      {/* )} */}
-{/* {chat?.messages?.length === 0 && <p>No messages yet.</p>}  */}
       <div className="bottom">
         <div className="icons">
           <label htmlFor="file">

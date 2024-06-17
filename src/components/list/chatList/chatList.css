@@ -1,6 +1,27 @@
 .chatList {
   flex: 1;
-  overflow: scroll;
+  overflow-y: scroll; /* Ensure vertical scrolling */
+
+  /* Style the scrollbar for WebKit browsers (Chrome, Safari) */
+  ::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(17, 25, 40, 0.1); /* Transparent background for the track */
+    border-radius: 10px; /* Rounded corners for the track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(17, 25, 40, 0.3); /* Semi-transparent background for the thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 3px solid rgba(17, 25, 40, 0.1); /* Border to create a space effect */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(17, 25, 40, 0.5); /* Darker thumb on hover */
+  }
+
   .search {
     display: flex;
     align-items: center;
@@ -70,4 +91,29 @@
       }
     }
   }
+}
+
+/* Firefox scrollbar styles */
+.chatList {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(17, 25, 40, 0.3) rgba(17, 25, 40, 0.1); /* Thumb and track colors */
+}
+
+.chatList::-moz-scrollbar {
+  width: 12px;
+}
+
+.chatList::-moz-scrollbar-track {
+  background: rgba(17, 25, 40, 0.1);
+  border-radius: 10px;
+}
+
+.chatList::-moz-scrollbar-thumb {
+  background: rgba(17, 25, 40, 0.3);
+  border-radius: 10px;
+  border: 3px solid rgba(17, 25, 40, 0.1);
+}
+
+.chatList::-moz-scrollbar-thumb:hover {
+  background: rgba(17, 25, 40, 0.5);
 }

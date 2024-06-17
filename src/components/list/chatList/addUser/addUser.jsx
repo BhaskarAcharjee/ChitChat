@@ -5,7 +5,6 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs,
   query,
   serverTimestamp,
   setDoc,
@@ -17,6 +16,7 @@ import { useUserStore } from "../../../../lib/userStore";
 
 const AddUser = () => {
   const [user, setUser] = useState(null);
+  const [formVisible, setFormVisible] = useState(true);
 
   const { currentUser } = useUserStore();
 
@@ -30,7 +30,7 @@ const AddUser = () => {
 
       const q = query(userRef, where("username", "==", username));
 
-      const querySnapShot = await getDocs(q);
+      const querySnapShot = await getDoc(q);
 
       if (!querySnapShot.empty) {
         setUser(querySnapShot.docs[0].data());
@@ -69,27 +69,34 @@ const AddUser = () => {
           updatedAt: Date.now(),
         }),
       });
+
+      // Hide the form after adding the user
+      setFormVisible(false);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className="addUser">
-      <form onSubmit={handleSearch}>
-        <input type="text" placeholder="Username" name="username" />
-        <button>Search</button>
-      </form>
-      {user && (
-        <div className="user">
-          <div className="detail">
-            <img src={user.avatar || "./avatar.png"} alt="" />
-            <span>{user.username}</span>
-          </div>
-          <button onClick={handleAdd}>Add User</button>
+    <>
+      {formVisible ? (
+        <div className="addUser">
+          <form onSubmit={handleSearch}>
+            <input type="text" placeholder="Username" name="username" />
+            <button>Search</button>
+          </form>
+          {user && (
+            <div className="user">
+              <div className="detail">
+                <img src={user.avatar || "./avatar.png"} alt="" />
+                <span>{user.username}</span>
+              </div>
+              <button onClick={handleAdd}>Add User</button>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      ) : null}
+    </>
   );
 };
 
